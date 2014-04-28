@@ -1,0 +1,24 @@
+<html ng-app='combobox-test'>
+  <head>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/build/formdemo.css"/>
+    <script type='text/javascript' src='/bower_components/jquery/dist/jquery.js'></script>
+    <script type='text/javascript' src='/bower_components/angular/angular.js'></script>
+    <script type='text/javascript' src='/build/formdemo.js'></script>
+    <script type='text/javascript'>
+      angular.module('combobox-test', ['formdemo']);
+
+      function ComboBoxCtrl($scope) {
+        $scope.items = [
+          { id: 1, label: "first" },
+          { id: 2, label: "second" },
+          { id: 3, label: "third" }
+        ];
+      }
+    </script>
+  </head>
+  <body ng-controller='ComboBoxCtrl'>
+    <div combobox ng-model='value' items='items' search-attr="label" class='js-combobox'>{{item.label}}</div>
+    <span ng-bind='value' id='valueId'></span>
+  </body>
+</html>

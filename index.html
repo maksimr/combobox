@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="demo">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Demo</title>
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="demo/styles/syntax.css"/>
+    <link rel="stylesheet" href="demo/styles/style.css"/>
+    <link rel="stylesheet" href="demo/styles/readme.css"/>
+    <link rel="stylesheet" href="demo/img/flags.css"/>
+    <link rel="stylesheet" href="build/formdemo.css"/>
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <style>
+      .wip {
+        color:red;
+      }
+      .page-header {
+        padding-top: 40px;
+      }
+      .demonstration {
+        padding-left: 200px;
+      }
+    </style>
+
+    <script type='text/javascript' src='bower_components/jquery/dist/jquery.js'></script>
+    <script type='text/javascript' src='bower_components/markdown/lib/markdown.js'></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type='text/javascript' src='bower_components/angular/angular.js'></script>
+    <script type='text/javascript' src='bower_components/angular-route/angular-route.js'></script>
+    <script type='text/javascript' src='bower_components/angular-sanitize/angular-sanitize.js'></script>
+    <script type='text/javascript' src='bower_components/angular-animate/angular-animate.js'></script>
+    <script type='text/javascript' src='build/formdemo.js'></script>
+    <script type='text/javascript' src='demo/js/app.js'></script>
+  </head>
+
+  <body>
+    <div ng-view autoscroll='true' class="view container"></div>
+  </body>
+</html>

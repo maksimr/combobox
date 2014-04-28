@@ -1,0 +1,168 @@
+<h1>ComboBox</h1>
+
+<div class='directive-header'>
+  <h3>
+    Directive <code class="ng-binding">ComboBox</code>
+  </h3>
+</div>
+
+<p>
+    ComboBox writen on AngularJS, Bootstrap. Based on formstamp.
+    ComboBox consist from input directive fInput and list directive(menu) fList
+</p>
+
+<p>
+  Like a SELECT combo-box, you provide a list of values.
+  However, this is merely a list of suggestions. Like an INPUT text field, the user can type whatever text they want,
+  regardless of whether or not it’s in the drop down menu.
+  As the user types, partially matched values will be shown
+  in a pop-up menu below the INPUT text box.
+</p>
+
+<p>
+  Supports several Angular directives: <code>ngModel</code>,
+  <code>ngDisabled</code>, <code>ngRequired</code>. You can provide
+  template for single item in list to display any information you
+  need, not only label text.
+</p>
+
+<p>
+  Supported attributes:
+</p>
+
+<ul>
+  <li>
+    <var>items</var> - property of scope containing list of available for autocompletion values
+  </li>
+  <li>
+    <var>ng-model</var> - see AngularJS documentation
+    for <a href="http://docs.angularjs.org/api/ng/directive/ngModel">ngModel</a> directive
+  </li>
+  <li>
+    <var>ng-disabled</var> - disable/enable input with scope property
+  </li>
+  <li>
+    <var>class</var> - additional CSS classes
+  </li>
+  <li>
+    <var>ng-required</var> - required field or not
+  </li>
+  <li>
+    <var>search-attr</var> - The property which will be searched in suggest
+  </li>
+  <li>
+    <var>name</var> - The name of field
+  </li>
+</ul>
+
+<sample label="Simple example">
+  <form class="form-horizontal" role="form" ng-controller="ComboBoxCtrl">
+    <div class='form-group row'>
+      <label class="col-xs-2 control-label">Chose weapon</label>
+
+      <div class="col-xs-3">
+        <div combobox
+             items='items'
+             search-attr="name"
+             ng-model="svalue">
+          <b>{{item.id}}</b> {{item.name}}
+        </div>
+      </div>
+
+    </div>
+    <pre>Selected value: {{ svalue }}</pre>
+  </form>
+  <script>
+    function ComboBoxCtrl($scope) {
+      $scope.disabled = false;
+
+      $scope.items = [
+        {name:"Alabama", id:"AL"},
+        {name:"Alaska", id:"AK"},
+        {name:"American Samoa", id:"AS"},
+        {name:"Arizona", id:"AZ"},
+        {name:"Arkansas", id:"AR"},
+        {name:"Armed Forces Europe", id:"AE"},
+        {name:"Armed Forces Pacific", id:"AP"},
+        {name:"Armed Forces the Americas", id:"AA"},
+        {name:"California", id:"CA"},
+        {name:"Colorado", id:"CO"},
+        {name:"Connecticut", id:"CT"},
+        {name:"Delaware", id:"DE"}
+     ]
+    }
+  </script>
+</sample>
+
+<sample label="Disable">
+  <form class="form-horizontal" role="form" ng-controller="ComboBoxCtrl">
+    <div class='form-group row'>
+      <label class="col-xs-2 control-label">Chose weapon</label>
+
+      <div class="col-xs-3">
+        <div combobox
+             items='items'
+             ng-disabled="disabled"
+             search-attr="name"
+             ng-model="svalue">
+          <b>{{item.id}}</b> {{item.name}}
+        </div>
+      </div>
+
+      <div class="col-xs-1">
+        <button class="btn btn-default" ng-click="disabled=!disabled">
+          {{disabled ? 'Enable' : 'Disable'}}
+        </button>
+      </div>
+
+    </div>
+    <pre>Selected value: {{ svalue }}</pre>
+  </form>
+  <script>
+    function ComboBoxCtrl($scope) {
+      $scope.disabled = false;
+
+      $scope.items = [
+        {name:"Alabama", id:"AL"},
+        {name:"Alaska", id:"AK"},
+        {name:"American Samoa", id:"AS"},
+        {name:"Arizona", id:"AZ"},
+        {name:"Arkansas", id:"AR"},
+        {name:"Armed Forces Europe", id:"AE"},
+        {name:"Armed Forces Pacific", id:"AP"},
+        {name:"Armed Forces the Americas", id:"AA"},
+        {name:"California", id:"CA"},
+        {name:"Colorado", id:"CO"},
+        {name:"Connecticut", id:"CT"},
+        {name:"Delaware", id:"DE"}
+     ]
+    }
+  </script>
+</sample>
+
+<sample label="With server data">
+  <form class="form-horizontal" role="form" ng-controller="SelectCountryCtrl">
+    <div class='form-group row'>
+      <label class="col-xs-2 control-label">Select country</label>
+      <div class="col-xs-4">
+        <div combobox
+             items='countries'
+             search-attr="name"
+             ng-model="country">
+          <div class="flag flag-{{ item['alpha-2'].toLowerCase() }}"></div> {{item.name}}
+        </div>
+      </div>
+    </div>
+    <pre>Selected country is: {{ country }}</pre>
+  </form>
+  <script>
+    function SelectCountryCtrl($scope, $http) {
+      $scope.countries = [];
+
+      $http({method: 'GET', url: 'demo/data/countries.json'})
+        .success(function(data) {
+          $scope.countries = data;
+        });
+    }
+  </script>
+</sample>
